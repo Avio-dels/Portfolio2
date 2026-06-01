@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AYUSH NAGDIVE — Sales. Marketing. Consulting.</title>
+<meta name="description" content="Ayush Nagdive — CSE student, sales strategist, marketer & consultant from Amravati. Open to full-time, internship & freelance opportunities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FFFDF5;
+    --black: #000000;
+    --red: #FF6B6B;
+    --yellow: #FFD93D;
+    --violet: #C4B5FD;
+    --white: #FFFFFF;
+    --green: #25D366;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--cream);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* ──────────── WHATSAPP FLOAT ──────────── */
+  .wa-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+  .wa-tooltip {
+    background: var(--black);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border: 3px solid var(--black);
+    box-shadow: 4px 4px 0 var(--green);
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+  }
+  .wa-float:hover .wa-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .wa-btn {
+    width: 60px; height: 60px;
+    background: var(--green);
+    border: 4px solid var(--black);
+    box-shadow: 6px 6px 0 var(--black);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.15s linear;
+    animation: wa-pulse 3s ease-in-out infinite;
+  }
+  .wa-btn:hover {
+    transform: translate(-3px,-3px);
+    box-shadow: 9px 9px 0 var(--black);
+  }
+  .wa-btn:active {
+    transform: translate(2px,2px);
+    box-shadow: 2px 2px 0 var(--black);
+  }
+  .wa-btn svg { width: 30px; height: 30px; }
+  @keyframes wa-pulse {
+    0%,100% { box-shadow: 6px 6px 0 var(--black); }
+    50% { box-shadow: 6px 6px 0 var(--black), 0 0 0 6px rgba(37,211,102,0.2); }
+  }
+
+  /* ──────────── MOBILE NAV ──────────── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+  }
+  .hamburger span {
+    display: block;
+    width: 26px; height: 3px;
+    background: var(--black);
+    transition: all 0.2s ease;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--black);
+    z-index: 200;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--cream);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    padding: 20px 40px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 2px solid rgba(255,255,255,0.1);
+    transition: all 0.1s linear;
+  }
+  .mobile-menu a:hover { background: var(--red); color: var(--white); }
+  .mobile-menu a:last-child { background: var(--red); color: var(--white); border-bottom: none; }
+  .mobile-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: var(--red);
+    border: 3px solid var(--white);
+    color: var(--white);
+    font-size: 24px;
+    font-weight: 900;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+
+  /* ──────────── MARQUEE ──────────── */
+  .marquee-wrap {
+    background: var(--black);
+    border-bottom: 4px solid var(--black);
+    overflow: hidden;
+    padding: 12px 0;
+    position: sticky; top: 0; z-index: 99;
+  }
+  .marquee-track {
+    display: flex; gap: 0;
+    animation: marquee 18s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-track span {
+    color: var(--yellow);
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0 32px;
+  }
+  .marquee-track span.dot { color: var(--red); padding: 0; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ──────────── NAV ──────────── */
+  nav {
+    border-bottom: 4px solid var(--black);
+    background: var(--cream);
+    padding: 16px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 50;
+  }
+  .logo {
+    background: var(--red);
+    border: 4px solid var(--black);
+    box-shadow: 4px 4px 0 var(--black);
+    padding: 8px 16px;
+    font-weight: 900;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    transform: rotate(-1deg);
+    display: inline-block;
+    text-decoration: none;
+    color: var(--white);
+    transition: all 0.1s linear;
+  }
+  .logo:hover { transform: rotate(0deg); box-shadow: 6px 6px 0 var(--black); }
+  .nav-links { display: flex; gap: 6px; align-items: center; }
+  .nav-links a {
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--black);
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 2px solid transparent;
+    transition: all 0.1s linear;
+  }
+  .nav-links a:hover {
+    border-color: var(--black);
+    background: var(--yellow);
+    box-shadow: 4px 4px 0 var(--black);
+  }
+  .nav-linkedin {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #0A66C2 !important;
+    color: var(--white) !important;
+    border: 2px solid var(--black) !important;
+    box-shadow: 3px 3px 0 var(--black) !important;
+  }
+  .nav-linkedin:hover { background: #084f99 !important; box-shadow: 5px 5px 0 var(--black) !important; }
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    border: 4px solid var(--black) !important;
+    box-shadow: 4px 4px 0 var(--red) !important;
+  }
+  .nav-cta:hover {
+    background: var(--red) !important;
+    box-shadow: 6px 6px 0 var(--black) !important;
+  }
+
+  /* ──────────── HERO ──────────── */
+  .hero {
+    min-height: 92vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 4px solid var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(#000 1.5px, transparent 1.5px);
+    background-size: 28px 28px;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+  .hero-left {
+    padding: 72px 60px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 4px solid var(--black);
+    position: relative;
+    z-index: 2;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--yellow);
+    border: 4px solid var(--black);
+    box-shadow: 4px 4px 0 var(--black);
+    padding: 6px 16px;
+    font-weight: 900;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    width: fit-content;
+    transform: rotate(-2deg);
+    animation: wiggle 3s ease-in-out infinite;
+  }
+  @keyframes wiggle {
+    0%,100% { transform: rotate(-2deg); }
+    50% { transform: rotate(-1deg); }
+  }
+  .hero-tag .dot { width: 8px; height: 8px; background: var(--red); border-radius: 50%; border: 2px solid var(--black); }
+
+  .hero-name {
+    font-size: clamp(48px, 6.5vw, 96px);
+    font-weight: 900;
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .hero-name .stroke {
+    -webkit-text-stroke: 3px var(--black);
+    color: transparent;
+    display: block;
+  }
+  .hero-name .solid { color: var(--black); display: block; }
+  .hero-name .highlight {
+    background: var(--red);
+    color: var(--white);
+    display: inline-block;
+    padding: 0 16px;
+    border: 4px solid var(--black);
+    box-shadow: 6px 6px 0 var(--black);
+    transform: rotate(1deg);
+  }
+
+  .hero-tagline {
+    margin-top: 28px;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.5;
+    max-width: 420px;
+    background: var(--violet);
+    border: 4px solid var(--black);
+    box-shadow: 6px 6px 0 var(--black);
+    padding: 16px 20px;
+    transform: rotate(1deg);
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 24px;
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 4px solid var(--black);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.1s linear;
+    box-shadow: 6px 6px 0 var(--black);
+  }
+  .btn:hover { transform: translate(-2px,-2px); box-shadow: 8px 8px 0 var(--black); }
+  .btn:active { transform: translate(3px, 3px); box-shadow: none; }
+  .btn-primary { background: var(--red); color: var(--white); }
+  .btn-primary:hover { background: #e85555; }
+  .btn-secondary { background: var(--yellow); color: var(--black); }
+  .btn-secondary:hover { }
+  .btn-outline { background: var(--white); color: var(--black); }
+  .btn-outline:hover { background: var(--cream); }
+  .btn-wa { background: var(--green); color: var(--white); }
+  .btn-wa:hover { background: #1db954; }
+  .btn-li { background: #0A66C2; color: var(--white); }
+  .btn-li:hover { background: #084f99; }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+  }
+  .hero-right-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(45deg, transparent 45%, var(--yellow) 45%, var(--yellow) 55%, transparent 55%),
+                linear-gradient(-45deg, transparent 45%, var(--yellow) 45%, var(--yellow) 55%, transparent 55%);
+    background-size: 30px 30px;
+    opacity: 0.12;
+  }
+
+  .avatar-box {
+    width: 220px; height: 260px;
+    background: var(--violet);
+    border: 4px solid var(--black);
+    box-shadow: 12px 12px 0 var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 100px;
+    position: relative;
+    transform: rotate(-2deg);
+    overflow: hidden;
+    z-index: 2;
+  }
+  .avatar-initials {
+    font-weight: 900;
+    font-size: 76px;
+    -webkit-text-stroke: 3px var(--black);
+    color: transparent;
+    letter-spacing: -0.05em;
+    user-select: none;
+  }
+
+  .floating-badge {
+    position: absolute;
+    background: var(--red);
+    border: 4px solid var(--black);
+    box-shadow: 4px 4px 0 var(--black);
+    padding: 8px 14px;
+    font-weight: 900;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    z-index: 5;
+  }
+  .badge-1 { top: 15%; right: 5%; transform: rotate(3deg); animation: float1 4s ease-in-out infinite; }
+  .badge-2 { bottom: 20%; left: 2%; transform: rotate(-3deg); background: var(--yellow); color: var(--black); animation: float2 5s ease-in-out infinite; }
+  .badge-3 { top: 60%; right: 2%; transform: rotate(2deg); background: var(--black); color: var(--yellow); animation: float1 6s ease-in-out infinite; }
+  @keyframes float1 { 0%,100% { transform: rotate(3deg) translateY(0); } 50% { transform: rotate(3deg) translateY(-8px); } }
+  @keyframes float2 { 0%,100% { transform: rotate(-3deg) translateY(0); } 50% { transform: rotate(-3deg) translateY(-10px); } }
+
+  .stats-row {
+    display: flex;
+    gap: 0;
+    margin-top: 28px;
+    position: relative;
+    z-index: 3;
+  }
+  .stat-box {
+    border: 4px solid var(--black);
+    padding: 14px 20px;
+    text-align: center;
+    margin-right: -4px;
+    background: var(--cream);
+  }
+  .stat-box:nth-child(2) { background: var(--yellow); }
+  .stat-box:nth-child(3) { background: var(--black); color: var(--white); }
+  .stat-num { font-size: 28px; font-weight: 900; line-height: 1; display: block; }
+  .stat-label { font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; display: block; margin-top: 4px; }
+
+  /* ──────────── SECTION BASE ──────────── */
+  section { border-bottom: 4px solid var(--black); }
+  .section-header {
+    border-bottom: 4px solid var(--black);
+    padding: 28px 60px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--black);
+  }
+  .section-header h2 {
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--yellow);
+  }
+  .section-header .num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--red);
+  }
+  .section-inner { padding: 56px; }
+
+  /* ──────────── SERVICES ──────────── */
+  #services { background: var(--cream); }
+  .services-headline {
+    font-size: clamp(32px, 4.5vw, 68px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    text-transform: uppercase;
+    margin-bottom: 44px;
+  }
+  .services-headline em {
+    font-style: normal;
+    -webkit-text-stroke: 2px var(--black);
+    color: transparent;
+  }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .service-card {
+    border: 4px solid var(--black);
+    margin: -2px;
+    padding: 36px 28px;
+    background: var(--white);
+    box-shadow: 8px 8px 0 var(--black);
+    transition: all 0.2s ease-out;
+    cursor: default;
+    position: relative;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 12px 14px 0 var(--black); }
+  .service-card:nth-child(2) { background: var(--yellow); margin-top: -10px; }
+  .service-card:nth-child(3) { background: var(--violet); }
+  .service-icon {
+    width: 56px; height: 56px;
+    border: 4px solid var(--black);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+    background: var(--black);
+    box-shadow: 4px 4px 0 var(--red);
+  }
+  .service-card h3 { font-size: 20px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .service-card p { font-size: 14px; font-weight: 500; line-height: 1.6; }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+  .tag {
+    font-size: 9px; font-weight: 900; letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--black); color: var(--cream);
+    padding: 4px 10px;
+    border: 2px solid var(--black);
+  }
+  .service-card:nth-child(2) .tag { color: var(--yellow); }
+  .service-card:nth-child(3) .tag { color: var(--violet); }
+
+  /* ──────────── PROJECTS ──────────── */
+  #projects { background: var(--black); }
+  #projects .section-header { background: var(--red); }
+  #projects .section-header h2 { color: var(--white); }
+  #projects .section-inner { padding: 56px; }
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .project-card {
+    border: 4px solid var(--yellow);
+    background: var(--cream);
+    box-shadow: 8px 8px 0 var(--yellow);
+    transition: all 0.2s ease-out;
+    overflow: hidden;
+  }
+  .project-card:hover { transform: translateY(-6px); box-shadow: 14px 14px 0 var(--yellow); }
+  .project-card:nth-child(2) { border-color: var(--violet); box-shadow: 8px 8px 0 var(--violet); }
+  .project-card:nth-child(2):hover { box-shadow: 14px 14px 0 var(--violet); }
+  .project-header {
+    background: var(--yellow);
+    border-bottom: 4px solid var(--black);
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .project-card:nth-child(2) .project-header { background: var(--violet); }
+  .project-header h3 { font-size: 20px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; }
+  .project-year { font-size: 10px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; }
+  .project-body { padding: 24px; }
+  .project-body p { font-size: 14px; font-weight: 500; line-height: 1.6; margin-bottom: 18px; }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+  .project-tech span {
+    font-size: 9px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase;
+    border: 2px solid var(--black); padding: 4px 10px; background: var(--white);
+  }
+  .project-links { display: flex; gap: 10px; flex-wrap: wrap; }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--black); color: var(--white);
+    border: 2px solid var(--black);
+    padding: 7px 14px;
+    text-decoration: none;
+    box-shadow: 3px 3px 0 var(--black);
+    transition: all 0.1s linear;
+  }
+  .project-link:hover { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--black); }
+  .project-link.live { background: var(--red); color: var(--white); box-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
+  .project-link.github { background: var(--white); color: var(--black); }
+
+  /* ──────────── EXPERIENCE ──────────── */
+  #experience { background: var(--cream); }
+  #experience .section-header { background: var(--violet); }
+  #experience .section-header h2 { color: var(--black); }
+  .exp-grid { display: grid; grid-template-columns: 280px 1fr; gap: 0; }
+  .exp-sidebar {
+    border-right: 4px solid var(--black);
+    padding: 36px 28px;
+  }
+  .exp-company {
+    font-size: 22px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em;
+    background: var(--red);
+    color: var(--white);
+    border: 4px solid var(--black);
+    box-shadow: 6px 6px 0 var(--black);
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    display: inline-block;
+    transform: rotate(-1deg);
+  }
+  .exp-period {
+    font-size: 11px; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase;
+    background: var(--yellow);
+    border: 3px solid var(--black);
+    padding: 5px 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .exp-location { font-size: 12px; font-weight: 700; opacity: 0.7; }
+  .exp-content { padding: 36px 44px; }
+  .exp-role { font-size: 26px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 20px; line-height: 1.1; }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    font-size: 14px; font-weight: 500; line-height: 1.6;
+    padding: 10px 0 10px 26px;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+    position: relative;
+  }
+  .exp-bullets li::before { content: '→'; position: absolute; left: 0; font-weight: 900; color: var(--red); }
+
+  /* ──────────── ACHIEVEMENTS ──────────── */
+  #achievements { background: var(--yellow); }
+  #achievements .section-header { background: var(--black); }
+  .ach-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .ach-card {
+    background: var(--white);
+    border: 4px solid var(--black);
+    box-shadow: 8px 8px 0 var(--black);
+    padding: 28px;
+    transition: all 0.2s ease-out;
+    position: relative;
+    overflow: hidden;
+  }
+  .ach-card:hover { transform: translateY(-4px); box-shadow: 12px 12px 0 var(--black); }
+  .ach-card::before {
+    content: attr(data-num);
+    position: absolute; top: -10px; right: 16px;
+    font-size: 100px; font-weight: 900;
+    -webkit-text-stroke: 2px var(--black);
+    color: transparent; opacity: 0.08; line-height: 1;
+    pointer-events: none;
+  }
+  .ach-emoji { font-size: 34px; margin-bottom: 14px; display: block; }
+  .ach-card h3 { font-size: 17px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 8px; }
+  .ach-card p { font-size: 13px; font-weight: 500; line-height: 1.6; }
+  .ach-badge {
+    display: inline-block; margin-top: 10px;
+    background: var(--black); color: var(--yellow);
+    font-size: 9px; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 4px 12px; border: 2px solid var(--black);
+  }
+
+  /* ──────────── LEADERSHIP ──────────── */
+  #leadership { background: var(--cream); }
+  #leadership .section-header { background: var(--yellow); }
+  #leadership .section-header h2, #leadership .section-header .num { color: var(--black); }
+  .leadership-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .lead-item {
+    border: 4px solid var(--black); margin: -2px;
+    padding: 28px 24px; background: var(--white);
+    transition: all 0.2s ease-out;
+  }
+  .lead-item:hover { background: var(--cream); transform: translateY(-4px); box-shadow: 8px 8px 0 var(--black); z-index: 2; }
+  .lead-item:nth-child(2) { background: var(--violet); }
+  .lead-item:nth-child(5) { background: var(--red); color: var(--white); }
+  .lead-icon { font-size: 30px; margin-bottom: 14px; display: block; }
+  .lead-item h3 { font-size: 15px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 8px; }
+  .lead-item p { font-size: 12px; font-weight: 500; line-height: 1.6; opacity: 0.85; }
+  .lead-period {
+    display: inline-block; margin-top: 12px;
+    font-size: 9px; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase;
+    border: 2px solid currentColor; padding: 3px 10px;
+  }
+
+  /* ──────────── CERTS ──────────── */
+  #certs { background: var(--black); }
+  #certs .section-header { background: var(--yellow); border-color: var(--yellow); }
+  #certs .section-header h2, #certs .section-header .num { color: var(--black); opacity: 0.8; }
+  .certs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .cert-card {
+    border: 4px solid var(--yellow); margin: -2px;
+    padding: 24px 18px; background: transparent; color: var(--white);
+    transition: all 0.15s linear; cursor: default;
+  }
+  .cert-card:hover { background: var(--yellow); color: var(--black); transform: translateY(-4px); z-index: 2; }
+  .cert-org { font-size: 9px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.6; margin-bottom: 8px; }
+  .cert-card:hover .cert-org { opacity: 0.7; }
+  .cert-name { font-size: 13px; font-weight: 700; line-height: 1.4; }
+  .cert-year { font-size: 10px; font-weight: 900; margin-top: 10px; color: var(--yellow); }
+  .cert-card:hover .cert-year { color: var(--black); }
+
+  /* ──────────── SKILLS ──────────── */
+  #skills { background: var(--cream); }
+  #skills .section-header { background: var(--red); }
+  #skills .section-header h2 { color: var(--white); }
+  .skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; }
+  .skill-group { margin-bottom: 28px; }
+  .skill-group-title {
+    font-size: 10px; font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase;
+    background: var(--black); color: var(--cream);
+    padding: 5px 12px; display: inline-block; margin-bottom: 14px;
+  }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-pill {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    border: 3px solid var(--black); padding: 5px 12px; background: var(--white);
+    transition: all 0.1s linear; cursor: default;
+  }
+  .skill-pill:hover { background: var(--red); color: var(--white); box-shadow: 3px 3px 0 var(--black); transform: translateY(-2px); }
+  .skill-pill.yellow:hover { background: var(--yellow); color: var(--black); }
+  .skill-pill.violet:hover { background: var(--violet); }
+
+  /* ──────────── CONTACT / CTA ──────────── */
+  #contact {
+    background: var(--red);
+    position: relative;
+    overflow: hidden;
+  }
+  #contact::before {
+    content: 'HIRE ME';
+    position: absolute;
+    font-size: 180px; font-weight: 900;
+    -webkit-text-stroke: 2px rgba(0,0,0,0.1);
+    color: transparent;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+  }
+  #contact .section-header { background: var(--black); }
+  .contact-inner { padding: 72px 56px; text-align: center; position: relative; z-index: 2; }
+  .contact-headline {
+    font-size: clamp(36px, 5.5vw, 84px);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    color: var(--white);
+    text-shadow: 6px 6px 0 var(--black);
+    margin-bottom: 14px;
+  }
+  .contact-sub { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 44px; opacity: 0.9; }
+  .contact-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+  .contact-chip {
+    border: 4px solid var(--black);
+    background: var(--white);
+    padding: 13px 24px;
+    font-size: 12px; font-weight: 900; letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-right: -4px;
+    text-decoration: none;
+    color: var(--black);
+    transition: all 0.1s linear;
+    box-shadow: 4px 4px 0 var(--black);
+  }
+  .contact-chip:hover { background: var(--yellow); transform: translateY(-2px); box-shadow: 6px 6px 0 var(--black); }
+  .contact-chip:active { transform: translate(2px,2px); box-shadow: none; }
+  .contact-chip.wa-chip { background: var(--green); color: var(--white); }
+  .contact-chip.wa-chip:hover { background: #1db954; }
+  .contact-chip.li-chip { background: #0A66C2; color: var(--white); }
+  .contact-chip.li-chip:hover { background: #084f99; }
+
+  /* ──────────── FOOTER ──────────── */
+  footer {
+    background: var(--black);
+    border-top: 4px solid var(--black);
+    padding: 28px 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer p { color: var(--cream); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .footer-links { display: flex; gap: 0; }
+  .footer-links a {
+    color: var(--cream); font-size: 10px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 2px solid rgba(255,255,255,0.2);
+    margin-right: -2px;
+    transition: all 0.1s linear;
+  }
+  .footer-links a:hover { background: var(--yellow); color: var(--black); border-color: var(--yellow); }
+  .footer-star { color: var(--yellow); font-size: 18px; animation: spin-slow 10s linear infinite; display: inline-block; }
+  @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  /* ──────────── DIVIDER STRIPE ──────────── */
+  .stripe-divider {
+    border-top: 4px solid var(--black);
+    border-bottom: 4px solid var(--black);
+    background: var(--black);
+    padding: 12px 0;
+    overflow: hidden;
+  }
+  .stripe-text {
+    font-size: 12px; font-weight: 900; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--cream); white-space: nowrap;
+    display: flex; gap: 44px;
+    animation: marquee 12s linear infinite;
+  }
+  .stripe-text span { opacity: 0.4; }
+  .stripe-text strong { color: var(--red); opacity: 1; }
+
+  /* ──────────── RESPONSIVE ──────────── */
+  @media (max-width: 1100px) {
+    .nav-links a:not(.nav-cta):not(.nav-linkedin) { display: none; }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 44px 24px 36px; border-right: none; }
+    .section-header { padding: 22px 24px; }
+    .section-inner { padding: 28px 20px; }
+    #projects .section-inner { padding: 28px 20px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card:nth-child(2) { margin-top: 0; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .leadership-grid { grid-template-columns: 1fr 1fr; }
+    .certs-grid { grid-template-columns: 1fr 1fr; }
+    .exp-grid { grid-template-columns: 1fr; }
+    .exp-sidebar { border-right: none; border-bottom: 4px solid var(--black); padding: 24px 20px; }
+    .exp-content { padding: 24px 20px; }
+    .ach-grid { grid-template-columns: 1fr; }
+    .skills-layout { grid-template-columns: 1fr; gap: 0; }
+    .contact-inner { padding: 44px 20px; }
+    .contact-btns { flex-direction: column; align-items: center; }
+    .contact-info { flex-direction: column; align-items: center; gap: 8px; }
+    .contact-chip { margin-right: 0; width: 100%; max-width: 320px; text-align: center; justify-content: center; display: flex; }
+    footer { flex-direction: column; gap: 16px; padding: 24px 20px; text-align: center; }
+    .footer-links { justify-content: center; flex-wrap: wrap; }
+    .hero-name { font-size: clamp(44px, 12vw, 72px); }
+    .wa-float { bottom: 18px; right: 18px; }
+    .wa-btn { width: 52px; height: 52px; }
+  }
+
+  @media (max-width: 480px) {
+    .leadership-grid { grid-template-columns: 1fr; }
+    .certs-grid { grid-template-columns: 1fr; }
+    .ach-grid { grid-template-columns: 1fr; }
+    .hero-ctas .btn { font-size: 11px; padding: 11px 18px; }
+    .services-headline { font-size: clamp(28px, 9vw, 44px); }
+  }
+
+  /* ──────────── BACK TO TOP ──────────── */
+  .back-to-top {
+    position: fixed;
+    bottom: 100px;
+    right: 28px;
+    z-index: 998;
+    width: 48px; height: 48px;
+    background: var(--black);
+    color: var(--white);
+    border: 3px solid var(--black);
+    box-shadow: 4px 4px 0 var(--red);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 900;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.15s linear;
+    opacity: 0; pointer-events: none;
+    transform: translateY(10px);
+  }
+  .back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .back-to-top:hover { background: var(--red); box-shadow: 6px 6px 0 var(--black); transform: translate(-2px,-2px); }
+
+  /* ──────────── AVATAR PHOTO ──────────── */
+  .avatar-box img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+  .avatar-box .avatar-placeholder {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; width: 100%; height: 100%;
+  }
+  .avatar-box .avatar-placeholder .avatar-initials { font-size: 76px; }
+  .avatar-box .avatar-placeholder .placeholder-hint {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: rgba(0,0,0,0.4);
+  }
+
+  /* ──────────── RESUME BTN ──────────── */
+  .btn-resume {
+    background: var(--black); color: var(--yellow);
+    border-color: var(--black);
+    box-shadow: 6px 6px 0 var(--yellow);
+  }
+  .btn-resume:hover { background: #111; box-shadow: 8px 8px 0 var(--yellow); }
+
+  /* ──────────── PROJECTS 3-COL ──────────── */
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .project-card:nth-child(3) { border-color: var(--red); box-shadow: 8px 8px 0 var(--red); }
+  .project-card:nth-child(3):hover { box-shadow: 14px 14px 0 var(--red); }
+  .project-card:nth-child(3) .project-header { background: var(--red); }
+
+  /* ──────────── TESTIMONIALS ──────────── */
+  #testimonials { background: var(--cream); }
+  #testimonials .section-header { background: var(--violet); }
+  #testimonials .section-header h2 { color: var(--black); }
+  #testimonials .section-header .num { color: rgba(0,0,0,0.5); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .testi-card {
+    background: var(--white);
+    border: 4px solid var(--black);
+    box-shadow: 8px 8px 0 var(--black);
+    padding: 32px;
+    position: relative;
+    transition: all 0.2s ease-out;
+  }
+  .testi-card:hover { transform: translateY(-4px); box-shadow: 12px 12px 0 var(--black); }
+  .testi-card:nth-child(1) { background: var(--yellow); }
+  .testi-card:nth-child(3) { background: var(--violet); }
+  .testi-quote {
+    font-size: 64px; font-weight: 900; line-height: 0.6;
+    color: var(--black); opacity: 0.15;
+    position: absolute; top: 16px; left: 20px;
+    font-family: Georgia, serif;
+    user-select: none;
+  }
+  .testi-text {
+    font-size: 15px; font-weight: 600; line-height: 1.65;
+    color: var(--black); margin-bottom: 20px;
+    position: relative; z-index: 2;
+    font-style: italic;
+  }
+  .testi-footer { display: flex; align-items: center; gap: 14px; }
+  .testi-avatar {
+    width: 44px; height: 44px;
+    background: var(--black);
+    border: 3px solid var(--black);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 900;
+    color: var(--yellow);
+    flex-shrink: 0;
+    text-transform: uppercase;
+  }
+  .testi-card:nth-child(1) .testi-avatar { background: var(--black); color: var(--yellow); }
+  .testi-card:nth-child(3) .testi-avatar { background: var(--black); color: var(--violet); }
+  .testi-name { font-size: 13px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; }
+  .testi-role { font-size: 11px; font-weight: 600; opacity: 0.6; margin-top: 2px; letter-spacing: 0.05em; }
+  .testi-type {
+    display: inline-block;
+    font-size: 9px; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase;
+    background: var(--black); color: var(--cream);
+    padding: 3px 8px; border: 2px solid var(--black);
+    margin-left: auto; flex-shrink: 0;
+  }
+  .testi-card:nth-child(1) .testi-type { background: var(--black); color: var(--yellow); }
+
+  /* ──────────── NAV ACTIVE STATE ──────────── */
+  .nav-links a.active {
+    border-color: var(--black);
+    background: var(--yellow);
+    box-shadow: 4px 4px 0 var(--black);
+  }
+
+  @media (max-width: 900px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .back-to-top { bottom: 88px; right: 18px; width: 42px; height: 42px; font-size: 16px; }
+  }
+  @media (max-width: 480px) {
+    .testimonials-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- WHATSAPP FLOAT BUTTON -->
+<div class="wa-float">
+  <div class="wa-tooltip">Chat on WhatsApp ↗</div>
+  <a class="wa-btn"
+     href="https://wa.me/917821953532?text=Hi%20Ayush%2C%20I%20would%20like%20to%20talk%20about%20an%20opportunity%20or%20know%20more%20about%20your%20services.%20Looking%20forward%20to%20connecting!"
+     target="_blank" rel="noopener" aria-label="Chat with Ayush on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+</div>
+
+<!-- BACK TO TOP -->
+<a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top">↑</a>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+  <a href="#services" onclick="closeMobileMenu()">Services</a>
+  <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+  <a href="#experience" onclick="closeMobileMenu()">Experience</a>
+  <a href="#achievements" onclick="closeMobileMenu()">Wins</a>
+  <a href="#contact" onclick="closeMobileMenu()">Hire Me →</a>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>Available for Opportunities</span><span class="dot">★</span>
+    <span>Sales &amp; Marketing</span><span class="dot">★</span>
+    <span>Business Development</span><span class="dot">★</span>
+    <span>IT Consulting</span><span class="dot">★</span>
+    <span>Community Leader</span><span class="dot">★</span>
+    <span>CSE Final Year</span><span class="dot">★</span>
+    <span>Available for Opportunities</span><span class="dot">★</span>
+    <span>Sales &amp; Marketing</span><span class="dot">★</span>
+    <span>Business Development</span><span class="dot">★</span>
+    <span>IT Consulting</span><span class="dot">★</span>
+    <span>Community Leader</span><span class="dot">★</span>
+    <span>CSE Final Year</span><span class="dot">★</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">AN</a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#achievements">Wins</a>
+    <a href="https://drive.google.com/file/d/1FEOGYN0W7MkxYJ8v9y2tZmPhV9eG0z9k/view?usp=drivesdk" target="_blank" rel="noopener" class="nav-linkedin" style="background:#111!important;color:var(--yellow)!important;box-shadow:3px 3px 0 var(--yellow)!important;">
+      📄 Resume
+    </a>
+    <a href="https://www.linkedin.com/in/ayush-nagdive-99048b286/" target="_blank" rel="noopener" class="nav-linkedin">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+    <a href="#contact" class="nav-cta">Hire Me →</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-pattern" aria-hidden="true"></div>
+  <div class="hero-left">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      Open to Work — Sales, Marketing, Consulting
+    </div>
+    <h1 class="hero-name">
+      <span class="stroke">AYUSH</span>
+      <span class="solid">NAG-</span>
+      <span class="highlight">DIVE</span>
+    </h1>
+    <div class="hero-tagline">
+      CSE student who sells, leads, builds &amp; talks his way through any room.
+      Strong communication, real results, zero filler.
+    </div>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn btn-primary">✦ Hire Me</a>
+      <a href="https://drive.google.com/file/d/1FEOGYN0W7MkxYJ8v9y2tZmPhV9eG0z9k/view?usp=drivesdk" target="_blank" rel="noopener" class="btn btn-resume">📄 Resume</a>
+      <a href="#projects" class="btn btn-secondary">View Work →</a>
+      <a href="https://wa.me/917821953532?text=Hi%20Ayush%2C%20I%20would%20like%20to%20talk%20about%20an%20opportunity%20or%20know%20more%20about%20your%20services.%20Looking%20forward%20to%20connecting!" target="_blank" rel="noopener" class="btn btn-wa">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-right-bg" aria-hidden="true"></div>
+    <div class="floating-badge badge-1">Available Now</div>
+    <div class="floating-badge badge-2">Amravati, MH</div>
+    <div class="floating-badge badge-3">Final Year CSE</div>
+    <div class="avatar-box">
+      <!-- Replace src below with your GitHub raw URL once pp.png is uploaded -->
+      <!-- e.g. https://raw.githubusercontent.com/Avio-dels/YOUR-REPO/main/files/pp.png -->
+      <div class="avatar-placeholder" id="avatarHolder">
+        <span class="avatar-initials">AN</span>
+        <span class="placeholder-hint">Photo Soon</span>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-box">
+        <span class="stat-num">2+</span>
+        <span class="stat-label">Yrs CR</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">30+</span>
+        <span class="stat-label">Colleges</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">1st</span>
+        <span class="stat-label">Prize</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIPE DIVIDER -->
+<div class="stripe-divider" aria-hidden="true">
+  <div class="stripe-text">
+    <strong>SALES</strong><span>×</span><strong>MARKETING</strong><span>×</span>
+    <strong>CONSULTING</strong><span>×</span><strong>LEADERSHIP</strong><span>×</span>
+    <strong>TECH</strong><span>×</span><strong>COMMUNICATION</strong><span>×</span>
+    <strong>SALES</strong><span>×</span><strong>MARKETING</strong><span>×</span>
+    <strong>CONSULTING</strong><span>×</span><strong>LEADERSHIP</strong><span>×</span>
+    <strong>TECH</strong><span>×</span><strong>COMMUNICATION</strong><span>×</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header">
+    <span class="num">01 /</span>
+    <h2>What I Bring to the Table</h2>
+  </div>
+  <div class="section-inner">
+    <p class="services-headline">
+      I <em>SELL.</em><br>
+      I <em>MARKET.</em><br>
+      I <em>CONSULT.</em>
+    </p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">💼</div>
+        <h3>Sales &amp; Business Development</h3>
+        <p>Cold outreach, lead qualification, consultative selling, and full sales cycle management. Built for high-rejection environments and long-term client relationships.</p>
+        <div class="service-tags">
+          <span class="tag">Lead Gen</span>
+          <span class="tag">Cold Outreach</span>
+          <span class="tag">Objection Handling</span>
+          <span class="tag">Conversion</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📣</div>
+        <h3>Marketing &amp; Brand Promotion</h3>
+        <p>Campaign execution, digital marketing, social media strategy, and content that actually gets traction. Promoted Anusandhan 2024 across 30+ colleges.</p>
+        <div class="service-tags">
+          <span class="tag">Digital Marketing</span>
+          <span class="tag">Social Media</span>
+          <span class="tag">Campaign Mgmt</span>
+          <span class="tag">Brand Strategy</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧠</div>
+        <h3>Consulting &amp; Advisory</h3>
+        <p>Needs assessment, gap analysis, stakeholder management, and solution pitching. Currently advising students — previously advising projects that ship on time.</p>
+        <div class="service-tags">
+          <span class="tag">Needs Assessment</span>
+          <span class="tag">Gap Analysis</span>
+          <span class="tag">Stakeholder Mgmt</span>
+          <span class="tag">Pitching</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="num">02 /</span>
+    <h2>Projects I Actually Built</h2>
+  </div>
+  <div class="section-inner">
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-header">
+          <h3>Konvert CRM</h3>
+          <span class="project-year">May 2026</span>
+        </div>
+        <div class="project-body">
+          <p>Gen-Z focused CRM with lead tracking, sales analytics, KPI dashboards, Kanban workflow management, and Excel import/export. Built because most CRMs are boring — mine isn't.</p>
+          <div class="project-tech">
+            <span>Chart.js</span>
+            <span>JavaScript</span>
+            <span>Kanban</span>
+            <span>Excel I/O</span>
+            <span>KPI Dashboards</span>
+          </div>
+          <div class="project-links">
+            <a href="https://avio-dels.github.io/Konvert-CRM/" target="_blank" rel="noopener" class="project-link live">🚀 Live Demo ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <h3>DevPlan Pro</h3>
+          <span class="project-year">Feb 2026</span>
+        </div>
+        <div class="project-body">
+          <p>Team Lead on a 4-member engineering team. Full Software Engineering Planning Suite — COCOMO estimation, PERT, sprint board, risk heatmap, EVM. Presented to faculty evaluators. Shipped on time.</p>
+          <div class="project-tech">
+            <span>React.js</span>
+            <span>Team Lead</span>
+            <span>COCOMO</span>
+            <span>PERT / EVM</span>
+            <span>WebGL2</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Avio-dels/DevPlan-Pro" target="_blank" rel="noopener" class="project-link github">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="black"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              GitHub ↗
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <h3>Verbose — Smart Attendance</h3>
+          <span class="project-year">2025</span>
+        </div>
+        <div class="project-body">
+          <p>Smart attendance management system built to replace manual roll calls. Automates tracking, generates attendance reports, and flags attendance shortfalls — practical, campus-ready, and built for real use.</p>
+          <div class="project-tech">
+            <span>Python</span>
+            <span>Automation</span>
+            <span>Attendance Mgmt</span>
+            <span>Reporting</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Avio-dels/verbose-system" target="_blank" rel="noopener" class="project-link github">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="black"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              GitHub ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="num">03 /</span>
+    <h2>Work Experience</h2>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-sidebar">
+      <span class="exp-company">EduonTech</span>
+      <span class="exp-period">Apr 2026 – May 2026</span>
+      <p class="exp-location">📍 Amravati, Maharashtra<br>On-site</p>
+    </div>
+    <div class="exp-content">
+      <h3 class="exp-role">Academic Counsellor &amp; Business Development Executive</h3>
+      <ul class="exp-bullets">
+        <li>Conducted <strong>45+ one-on-one advisory sessions</strong> — assessed student goals, identified skill gaps, and recommended programs. Owned the full consultative sales cycle solo.</li>
+        <li>Executed <strong>1,100+ cold calls</strong> over 3 weeks; consistently iterated pitch approach through high rejection rates, maintaining professionalism and building pipeline from zero.</li>
+        <li>Drove lead generation end-to-end — prospecting, qualifying, and handing off warm leads, contributing directly to EduonTech's programme inquiry growth.</li>
+        <li>Ran digital marketing campaigns across social platforms to drive brand awareness; built genuine student rapport through needs-based recommendations, not hard-sell tactics.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-header">
+    <span class="num">04 /</span>
+    <h2>Wins &amp; Highlights</h2>
+  </div>
+  <div class="section-inner">
+    <div class="ach-grid">
+      <div class="ach-card" data-num="01">
+        <span class="ach-emoji">🏆</span>
+        <h3>1st Prize — Documentary Making</h3>
+        <p>Won first place at Division Level under "Career Katta" by Maharashtra Information Technology Support Centre (MITSC) for 2023–24. Competed as a CSE student in a creative storytelling format.</p>
+        <span class="ach-badge">MITSC | Division Level</span>
+      </div>
+      <div class="ach-card" data-num="02">
+        <span class="ach-emoji">🎭</span>
+        <h3>Youth 2024 — Performing Arts</h3>
+        <p>Represented college at University level (Akola) in Folk Dance and Mime competitions at Youth 2024. Because engineers can dance too.</p>
+        <span class="ach-badge">University Level | Akola</span>
+      </div>
+      <div class="ach-card" data-num="03">
+        <span class="ach-emoji">📣</span>
+        <h3>Anusandhan 2024 — 30+ Outreach</h3>
+        <p>Core member of Exhibition Committee &amp; Team Lead of Marketing &amp; Promotion. Promoted the college fest across 30+ high schools and colleges in Amravati. Ran the campaign ground-up.</p>
+        <span class="ach-badge">Marketing Lead | College Fest</span>
+      </div>
+      <div class="ach-card" data-num="04">
+        <span class="ach-emoji">🤝</span>
+        <h3>NSS Camp 2025 — Village Development</h3>
+        <p>Participated in NSS Camp; contributed to village development activities, conducted cybercrime awareness (CSE angle), Blood Donation Camp, and Disaster Management Camp. Grassroots impact.</p>
+        <span class="ach-badge">NSS | Community Impact</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership">
+  <div class="section-header">
+    <span class="num">05 /</span>
+    <h2>Leadership &amp; Activities</h2>
+  </div>
+  <div class="section-inner" style="padding: 0;">
+    <div class="leadership-grid">
+      <div class="lead-item">
+        <span class="lead-icon">👑</span>
+        <h3>Class Representative</h3>
+        <p>Elected rep for 75+ students since Sem 1. Managed student-faculty communication, resolved disputes, coordinated events. The bridge no one else wanted to be.</p>
+        <span class="lead-period">Sem 1 → Present</span>
+      </div>
+      <div class="lead-item">
+        <span class="lead-icon">🩸</span>
+        <h3>NSS Volunteer</h3>
+        <p>Active since 2024. Blood Donation Camps, Disaster Management, Cyber Awareness drives. Community work isn't a checkbox — it's a habit.</p>
+        <span class="lead-period">2024 – 2026</span>
+      </div>
+      <div class="lead-item">
+        <span class="lead-icon">⚙️</span>
+        <h3>Engg-Joy 2023 &amp; 2024</h3>
+        <p>Exhibition Committee member in 2023 (Logistics &amp; Decoration). Core member in 2024. Made the chaos look organised.</p>
+        <span class="lead-period">2023 | 2024</span>
+      </div>
+      <div class="lead-item">
+        <span class="lead-icon">🔬</span>
+        <h3>Anusandhan 2024</h3>
+        <p>Core Exhibition Committee + Team Lead, Marketing &amp; Promotion. Took the fest to 30+ institutions. Real campaign, real results.</p>
+        <span class="lead-period">2024</span>
+      </div>
+      <div class="lead-item">
+        <span class="lead-icon">💡</span>
+        <h3>SIH 2025 Co-ordinator</h3>
+        <p>Co-ordinated the Internal Smart India Hackathon 2025 at college level. Because someone has to wrangle 100 engineers into one room.</p>
+        <span class="lead-period">2025</span>
+      </div>
+      <div class="lead-item">
+        <span class="lead-icon">🎓</span>
+        <h3>Final Year CSE</h3>
+        <p>PRMCOEAM, Amravati. Graduating May 2027. Engineering + Communication + Leadership — the combo that doesn't usually exist in the same person.</p>
+        <span class="lead-period">2023 – 2027</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section id="certs">
+  <div class="section-header">
+    <span class="num">06 /</span>
+    <h2>Certifications</h2>
+  </div>
+  <div class="section-inner" style="padding: 0;">
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-org">Deloitte</div>
+        <div class="cert-name">Data Analytics Job Simulation</div>
+        <div class="cert-year">2025</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-org">Accenture North America</div>
+        <div class="cert-name">Project Management Job Simulation</div>
+        <div class="cert-year">2024</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-org">Tata Group</div>
+        <div class="cert-name">Data Visualisation: Empowering Business with Effective Insights</div>
+        <div class="cert-year">2025</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-org">Cisco</div>
+        <div class="cert-name">Python Essentials 2</div>
+        <div class="cert-year">2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="num">07 /</span>
+    <h2>Skills Arsenal</h2>
+  </div>
+  <div class="section-inner">
+    <div class="skills-layout">
+      <div>
+        <div class="skill-group">
+          <div class="skill-group-title">Sales &amp; BD</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Lead Generation</span>
+            <span class="skill-pill">Cold Outreach</span>
+            <span class="skill-pill">Consultative Selling</span>
+            <span class="skill-pill">Objection Handling</span>
+            <span class="skill-pill">Enrollment Conversion</span>
+            <span class="skill-pill">Needs Assessment</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Marketing</div>
+          <div class="skill-pills">
+            <span class="skill-pill yellow">Digital Marketing</span>
+            <span class="skill-pill yellow">Social Media</span>
+            <span class="skill-pill yellow">Campaign Execution</span>
+            <span class="skill-pill yellow">Content Creation</span>
+            <span class="skill-pill yellow">Brand Positioning</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Consulting</div>
+          <div class="skill-pills">
+            <span class="skill-pill violet">1:1 Advisory</span>
+            <span class="skill-pill violet">Gap Analysis</span>
+            <span class="skill-pill violet">Stakeholder Mgmt</span>
+            <span class="skill-pill violet">Pitching</span>
+            <span class="skill-pill violet">Public Speaking</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group">
+          <div class="skill-group-title">Technical</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">Pandas</span>
+            <span class="skill-pill">Excel / Dashboards</span>
+            <span class="skill-pill">React.js</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">Agile / SDLC</span>
+            <span class="skill-pill">MS Office</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Soft Skills</div>
+          <div class="skill-pills">
+            <span class="skill-pill yellow">Resilience</span>
+            <span class="skill-pill yellow">Active Listening</span>
+            <span class="skill-pill yellow">Persuasion</span>
+            <span class="skill-pill yellow">Adaptability</span>
+            <span class="skill-pill yellow">Team Collaboration</span>
+            <span class="skill-pill yellow">Works Under Pressure*</span>
+          </div>
+        </div>
+        <p style="font-size:11px;opacity:0.5;font-weight:700;margin-top:8px;">*I'm a CS engineer. We practically live under pressure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-header">
+    <span class="num">08 /</span>
+    <h2>What People Say</h2>
+  </div>
+  <div class="section-inner">
+    <div class="testimonials-grid">
+
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Ayush has this rare ability to listen first and pitch second. When I was confused about which career path to take, he asked the right questions instead of pushing a programme. That made all the difference — I left the session with actual clarity.</p>
+        <div class="testi-footer">
+          <div class="testi-avatar">SR</div>
+          <div>
+            <div class="testi-name">Shreejith Rande</div>
+            <div class="testi-role">Student, EduonTech Advisory Session</div>
+          </div>
+          <span class="testi-type">Student</span>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">We worked together on the Anusandhan 2024 marketing campaign and Ayush was genuinely the engine behind our outreach. Organised, persistent, and didn't wait to be told what to do. We hit 30+ colleges and he was at the centre of that.</p>
+        <div class="testi-footer">
+          <div class="testi-avatar">KP</div>
+          <div>
+            <div class="testi-name">Kaushik Pawar</div>
+            <div class="testi-role">Core Committee Member, Anusandhan 2024</div>
+          </div>
+          <span class="testi-type">Peer</span>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Honestly didn't expect much from a 20-minute counselling session, but Ayush broke down my options in a way that made sense. No fluff, no pressure. He genuinely seemed to care about what was best for me, not just the sale.</p>
+        <div class="testi-footer">
+          <div class="testi-avatar">SN</div>
+          <div>
+            <div class="testi-name">Shreeya Naik</div>
+            <div class="testi-role">Student, EduonTech Advisory Session</div>
+          </div>
+          <span class="testi-type">Student</span>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">I was a fellow coordinator at SIH 2025. Ayush kept things running when the schedule went sideways — communicated clearly with participants, managed the flow, and stayed calm under pressure. The kind of person you want in your team for anything high-stakes.</p>
+        <div class="testi-footer">
+          <div class="testi-avatar">VK</div>
+          <div>
+            <div class="testi-name">Vikas Kolhe</div>
+            <div class="testi-role">Co-Coordinator, SIH 2025 — PRMCOEAM</div>
+          </div>
+          <span class="testi-type">Peer</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT CTA -->
+<section id="contact">
+  <div class="section-header">
+    <span class="num" style="color:var(--yellow)">09 /</span>
+    <h2>Get in Touch</h2>
+  </div>
+  <div class="contact-inner">
+    <p class="contact-headline">
+      Let's Work<br>Together.
+    </p>
+    <p class="contact-sub">Open to full-time roles, internships &amp; freelance projects in Sales, Marketing, and Consulting.</p>
+    <div class="contact-btns">
+      <a href="mailto:nagdiveayush@gmail.com" class="btn btn-outline">📧 nagdiveayush@gmail.com</a>
+      <a href="mailto:aviothic.xo@gmail.com" class="btn btn-outline">📧 aviothic.xo@gmail.com</a>
+      <a href="tel:+917821953532" class="btn btn-secondary">📞 +91 7821953532</a>
+      <a href="https://drive.google.com/file/d/1FEOGYN0W7MkxYJ8v9y2tZmPhV9eG0z9k/view?usp=drivesdk" target="_blank" rel="noopener" class="btn btn-resume">📄 Download Resume</a>
+      <a href="https://wa.me/917821953532?text=Hi%20Ayush%2C%20I%20would%20like%20to%20talk%20about%20an%20opportunity%20or%20know%20more%20about%20your%20services.%20Looking%20forward%20to%20connecting!" target="_blank" rel="noopener" class="btn btn-wa">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+    <div class="contact-info">
+      <a href="https://www.linkedin.com/in/ayush-nagdive-99048b286/" target="_blank" rel="noopener" class="contact-chip li-chip">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="white" style="margin-right:6px;vertical-align:middle"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn ↗
+      </a>
+      <a href="https://github.com/Avio-dels" target="_blank" rel="noopener" class="contact-chip">GitHub ↗</a>
+      <a href="https://avio-dels.github.io/Konvert-CRM/" target="_blank" rel="noopener" class="contact-chip">Konvert CRM ↗</a>
+      <span class="contact-chip" style="cursor:default;">📍 Amravati, MH</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Ayush Nagdive — Built Bold, Built Different.</p>
+  <span class="footer-star" aria-hidden="true">✦</span>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/ayush-nagdive-99048b286/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="https://github.com/Avio-dels" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://avio-dels.github.io/Konvert-CRM/" target="_blank" rel="noopener">Konvert ↗</a>
+    <a href="https://wa.me/917821953532?text=Hi%20Ayush%2C%20I%20would%20like%20to%20talk%20about%20an%20opportunity%20or%20know%20more%20about%20your%20services.%20Looking%20forward%20to%20connecting!" target="_blank" rel="noopener">WhatsApp ↗</a>
+  </div>
+</footer>
+
+<script>
+  // ── Mobile menu ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileClose = document.getElementById('mobileClose');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  mobileClose.addEventListener('click', closeMobileMenu);
+  function closeMobileMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  mobileMenu.addEventListener('click', (e) => { if (e.target === mobileMenu) closeMobileMenu(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMobileMenu(); });
+
+  // ── Back to top ──
+  const btt = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    btt.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+
+  // ── Scroll spy for nav ──
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+
+  // ── Photo swap (swap in real photo once uploaded) ──
+  // To activate: replace the avatarHolder div with:
+  // <img src="YOUR_GITHUB_RAW_URL/files/pp.png" alt="Ayush Nagdive">
+</script>
+
+</body>
+</html>
